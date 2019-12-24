@@ -1,0 +1,1021 @@
+WindowManager:
+    Start:
+    PayMoney:
+    History:
+    AddClothes:
+    FixPrice:
+    FixShirt:
+    FixPant:
+    FixSaree:
+    FixOthers:
+    QtyShirt:
+    QtyPant:
+    QtySaree:
+    QtyOthers:
+    Show:
+
+
+<Start>:
+    name: "start"
+    canvas:
+        Color:
+            rgb: [10000, 10000, 10000]
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    Label:
+        text: "DHOBIGHAT"
+        size_hint: 1,0.2
+        font_size: 50
+        pos_hint: {"x": 0, "y":0.8}
+        color: 10000,10000,10000,1
+        bold: True
+        canvas.before:
+            Color:
+                rgba: 2, 0.2, 0.5, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+
+    Button:
+        background_color: 10000,10000,10000,1
+        text: "Fix Price"
+        bold: True
+        size_hint: 1,0.12
+        pos_hint: {"x": 0,"y":0.6}
+        color: 0.9, 0.15, 0.15, 1
+        on_release:
+            app.root.current = "price"
+            root.manager.transition.direction = "left"
+
+    Button:
+        background_color: 10000,10000,10000,1
+        text: "Add Clothes"
+        bold: True
+        size_hint: 1,0.12
+        color: 0, 0, 0, 1
+        pos_hint: {"x": 0,"y":0.48}
+        color: 0.9, 0.15, 0.15, 1
+        on_release:
+            app.root.current = "addclothes"
+            root.manager.transition.direction = "left"
+    Button:
+        background_color: 10000,10000,10000,1
+        bold: True
+        text: "See history"
+        size_hint: 1,0.12
+        pos_hint: {"x": 0,"y":0.36}
+        color: 0.9, 0.15, 0.15, 1
+        on_release:
+            app.root.current = "history"
+            root.manager.transition.direction = "left"
+    Button:
+        background_color: 10000,10000,10000,1
+        bold: True
+        text: "Clear history"
+        size_hint: 1,0.12
+        pos_hint: {"x": 0,"y":0.24}
+        color: 0.9, 0.15, 0.15, 1
+        on_release:
+            root.clear_history()
+            app.root.current = "history"
+            root.manager.transition.direction = "left"
+    Button:
+        background_color: 10000,10000,10000,1
+        bold: True
+        text: "Pay Money"
+        size_hint: 1,0.12
+        pos_hint: {"x": 0,"y":0.12}
+        color: 0.9, 0.15, 0.15, 1
+        on_release:
+            app.root.current = "pay"
+            root.manager.transition.direction = "left"
+
+    Button:
+        background_color: 10000,10000,10000,1
+        bold: True
+        text: "Show Amount Pending"
+        size_hint: 1,0.12
+        pos_hint: {"x": 0,"y":0.0}
+        color: 0.9, 0.15, 0.15, 1
+        on_release:
+            app.root.current = "show"
+            root.manager.transition.direction = "left"
+
+
+
+<Show>:
+    name: "show"
+    amountt: amountt
+
+    GridLayout:
+        cols: 1
+        Label:
+            id: amountt
+            text: ""
+            font_size: 60
+            color: 2, 0.2, 0.5, 1
+            bold: True
+            canvas.before:
+                Color:
+                    rgba: 10000,10000,10000,1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+        Button:
+            text: "Back"
+            pos_hint: {"x": 0, "bottom": 1}
+            size_hint: 0.6, 0.1
+            background_color: 2, 0.2, 0.5, 1
+            color: 10000,10000,10000,1
+            on_press:
+                app.root.current="start"
+                root.manager.transition.direction = "right"
+
+
+<PayMoney>:
+    name: "pay"
+    money: money
+    canvas:
+        Color:
+            rgb: [10000, 10000, 10000]
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    GridLayout:
+        cols: 1
+        GridLayout:
+            cols: 1
+            Label:
+                text: "Please input the amount paid"
+                font_size: 60
+                color: 2, 0.2, 0.5, 1
+                bold: True
+                canvas.before:
+                    Color:
+                        rgba: 10000,10000,10000,1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            TextInput:
+                pos_hint: {"x": 0, "y":0}
+                size_hint: 0.1,0.4
+                multiline: False
+                bold: True
+                foreground_color: 2, 0.2, 0.5, 1
+                id: money
+            Label:
+                text: ""
+            Label:
+                text: ""
+        Button:
+            text: "Done"
+            pos_hint: {"x": 0.4, "bottom":1}
+            size_hint: 0.2,0.2
+            background_color: 2, 0.2, 0.5, 1
+            color: 10000,10000,10000,1
+            on_press:
+                root.submit()
+                app.root.current="start"
+                root.manager.transition.direction = "right"
+
+<P1>:
+    canvas:
+        Color:
+            rgb: [10000, 10000, 10000]
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    Label:
+        text: "Please fix price of the shirt first"
+        size_hint: 0.6, 0.2
+        pos_hint: {"x":0.2, "top":0.6}
+        color: 2, 0.2, 0.5, 1
+        bold: True
+        canvas.before:
+            Color:
+                rgba: 10000,10000,10000,1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+<P2>:
+    canvas:
+        Color:
+            rgb: [10000, 10000, 10000]
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    Label:
+        text: "Please fix price of the pant first"
+        size_hint: 0.6, 0.2
+        pos_hint: {"x":0.2, "top":0.6}
+        color: 2, 0.2, 0.5, 1
+        bold: True
+        canvas.before:
+            Color:
+                rgba: 10000,10000,10000,1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+<P3>:
+    canvas:
+        Color:
+            rgb: [10000, 10000, 10000]
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    Label:
+        text: "Please fix price of the saree first"
+        size_hint: 0.6, 0.2
+        pos_hint: {"x":0.2, "top":0.6}
+        color: 2, 0.2, 0.5, 1
+        bold: True
+        canvas.before:
+            Color:
+                rgba: 10000,10000,10000,1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+<P4>:
+    canvas:
+        Color:
+            rgb: [10000, 10000, 10000]
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    Label:
+        text: "Please fix price of the others first"
+        size_hint: 0.6, 0.2
+        pos_hint: {"x":0.2, "top":0.6}
+        color: 2, 0.2, 0.5, 1
+        bold: True
+        canvas.before:
+            Color:
+                rgba: 10000,10000,10000,1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+<AddClothes>:
+    name: "addclothes"
+    tot_shirt: tot_shirt
+    tot_pant: tot_pant
+    tot_saree: tot_saree
+    tot_others: tot_others
+    canvas:
+        Color:
+            rgb: [10000, 10000, 10000]
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    GridLayout:
+        cols:1
+        GridLayout:
+            cols:2
+            Label:
+                text: "Shirt"
+                color: 2, 0.2, 0.5, 1
+                bold: True
+                canvas.before:
+                    Color:
+                        rgba: 10000,10000,10000,1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            TextInput:
+                id: tot_shirt
+                foreground_color: 2, 0.2, 0.5, 1
+                bold: True
+                multiline: False
+            Label:
+                text: "Pant"
+                color: 2, 0.2, 0.5, 1
+                bold: True
+                canvas.before:
+                    Color:
+                        rgba: 10000,10000,10000,1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            TextInput:
+                id: tot_pant
+                foreground_color: 2, 0.2, 0.5, 1
+                bold: True
+                multiline: False
+            Label:
+                text: "Saree"
+                color: 2, 0.2, 0.5, 1
+                bold: True
+                canvas.before:
+                    Color:
+                        rgba: 10000,10000,10000,1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            TextInput:
+                id: tot_saree
+                foreground_color: 2, 0.2, 0.5, 1
+                bold: True
+                multiline: False
+            Label:
+                text: "Others"
+                color: 2, 0.2, 0.5, 1
+                bold: True
+                canvas.before:
+                    Color:
+                        rgba: 10000,10000,10000,1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            TextInput:
+                id: tot_others
+                foreground_color: 2, 0.2, 0.5, 1
+                bold: True
+                multiline: False
+
+        Label:
+            text: ""
+        Button:
+            text: "Done"
+            pos_hint: {"x": 0, "bottom": 1}
+            size_hint: 0.6, 0.2
+            background_color: 2, 0.2, 0.5, 1
+            color: 10000,10000,10000,1
+            on_press:
+                root.submit1()
+                root.submit2()
+                root.submit3()
+                root.submit4()
+                app.root.current="start"
+                root.manager.transition.direction = "right"
+
+
+<History>:
+    name: "history"
+    date: date
+    quantity: quantity
+    typeo: typeo
+    price: price
+    tot: tot
+    date2: date2
+    quantity2: quantity2
+    typeo2: typeo2
+    price2: price2
+    tot2: tot2
+    date3: date3
+    quantity3: quantity3
+    typeo3: typeo3
+    price3: price3
+    tot3: tot3
+    date4: date4
+    quantity4: quantity4
+    typeo4: typeo4
+    price4: price4
+    tot4: tot4
+    date5: date5
+    quantity5: quantity5
+    typeo5: typeo5
+    price5: price5
+    tot5: tot5
+    canvas:
+        Color:
+            rgb: [10000, 10000, 10000]
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+
+    GridLayout:
+        cols: 1
+        GridLayout:
+            cols: 3
+            Label:
+                id: date
+                text: ""
+                color: 2, 0.2, 0.5, 1
+                bold: True
+                canvas.before:
+                    Color:
+                        rgba: 10000,10000,10000,1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            Label:
+                id: quantity
+                text: ""
+                color: 2, 0.2, 0.5, 1
+                bold: True
+                canvas.before:
+                    Color:
+                        rgba: 10000,10000,10000,1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            Label:
+                id: typeo
+                text: ""
+                color: 2, 0.2, 0.5, 1
+                bold: True
+                canvas.before:
+                    Color:
+                        rgba: 10000,10000,10000,1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            Label:
+                id: price
+                text: ""
+                color: 2, 0.2, 0.5, 1
+                bold: True
+                canvas.before:
+                    Color:
+                        rgba: 10000,10000,10000,1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            Label:
+                id: tot
+                text: ""
+                color: 2, 0.2, 0.5, 1
+                bold: True
+                canvas.before:
+                    Color:
+                        rgba: 10000,10000,10000,1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            Label:
+                text: ""
+            Label:
+                id: date2
+                text: ""
+                color: 2, 0.2, 0.5, 1
+                bold: True
+                canvas.before:
+                    Color:
+                        rgba: 10000,10000,10000,1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            Label:
+                id: quantity2
+                text: ""
+                color: 2, 0.2, 0.5, 1
+                bold: True
+                canvas.before:
+                    Color:
+                        rgba: 10000,10000,10000,1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            Label:
+                id: typeo2
+                text: ""
+                color: 2, 0.2, 0.5, 1
+                bold: True
+                canvas.before:
+                    Color:
+                        rgba: 10000,10000,10000,1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            Label:
+                id: price2
+                text: ""
+                color: 2, 0.2, 0.5, 1
+                bold: True
+                canvas.before:
+                    Color:
+                        rgba: 10000,10000,10000,1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            Label:
+                id: tot2
+                text: ""
+                color: 2, 0.2, 0.5, 1
+                bold: True
+                canvas.before:
+                    Color:
+                        rgba: 10000,10000,10000,1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            Label:
+                text: ""
+            Label:
+                id: date3
+                text: ""
+                color: 2, 0.2, 0.5, 1
+                bold: True
+                canvas.before:
+                    Color:
+                        rgba: 10000,10000,10000,1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            Label:
+                id: quantity3
+                text: ""
+                color: 2, 0.2, 0.5, 1
+                bold: True
+                canvas.before:
+                    Color:
+                        rgba: 10000,10000,10000,1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            Label:
+                id: typeo3
+                text: ""
+                color: 2, 0.2, 0.5, 1
+                bold: True
+                canvas.before:
+                    Color:
+                        rgba: 10000,10000,10000,1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            Label:
+                id: price3
+                text: ""
+                color: 2, 0.2, 0.5, 1
+                bold: True
+                canvas.before:
+                    Color:
+                        rgba: 10000,10000,10000,1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            Label:
+                id: tot3
+                text: ""
+                color: 2, 0.2, 0.5, 1
+                bold: True
+                canvas.before:
+                    Color:
+                        rgba: 10000,10000,10000,1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            Label:
+                text: ""
+            Label:
+                id: date4
+                text: ""
+                color: 2, 0.2, 0.5, 1
+                bold: True
+                canvas.before:
+                    Color:
+                        rgba: 10000,10000,10000,1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            Label:
+                id: quantity4
+                text: ""
+                color: 2, 0.2, 0.5, 1
+                bold: True
+                canvas.before:
+                    Color:
+                        rgba: 10000,10000,10000,1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            Label:
+                id: typeo4
+                text: ""
+                color: 2, 0.2, 0.5, 1
+                bold: True
+                canvas.before:
+                    Color:
+                        rgba: 10000,10000,10000,1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            Label:
+                id: price4
+                text: ""
+                color: 2, 0.2, 0.5, 1
+                bold: True
+                canvas.before:
+                    Color:
+                        rgba: 10000,10000,10000,1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            Label:
+                id: tot4
+                text: ""
+                color: 2, 0.2, 0.5, 1
+                bold: True
+                canvas.before:
+                    Color:
+                        rgba: 10000,10000,10000,1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            Label:
+                text: ""
+            Label:
+                id: date5
+                text: ""
+                color: 2, 0.2, 0.5, 1
+                bold: True
+                canvas.before:
+                    Color:
+                        rgba: 10000,10000,10000,1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            Label:
+                id: quantity5
+                text: ""
+                color: 2, 0.2, 0.5, 1
+                bold: True
+                canvas.before:
+                    Color:
+                        rgba: 10000,10000,10000,1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            Label:
+                id: typeo5
+                text: ""
+                color: 2, 0.2, 0.5, 1
+                bold: True
+                canvas.before:
+                    Color:
+                        rgba: 10000,10000,10000,1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            Label:
+                id: price5
+                text: ""
+                color: 2, 0.2, 0.5, 1
+                bold: True
+                canvas.before:
+                    Color:
+                        rgba: 10000,10000,10000,1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            Label:
+                id: tot5
+                text: ""
+                color: 2, 0.2, 0.5, 1
+                bold: True
+                canvas.before:
+                    Color:
+                        rgba: 10000,10000,10000,1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            Label:
+                text: ""
+        Button:
+            text: "Back"
+            pos_hint: {"x": 0, "bottom": 1}
+            size_hint: 0.6, 0.2
+            background_color: 2, 0.2, 0.5, 1
+            color: 10000,10000,10000,1
+            on_press:
+                app.root.current="start"
+                root.manager.transition.direction = "right"
+
+<FixPrice>:
+    name: "price"
+    shirt_qty : shirt_qty
+    pant_qty : pant_qty
+    saree_qty : saree_qty
+    others_qty : others_qty
+    canvas:
+        Color:
+            rgb: [10000, 10000, 10000]
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    GridLayout:
+        cols:1
+        GridLayout:
+            cols:2
+            Label:
+                text: "Shirt"
+                color: 2, 0.2, 0.5, 1
+                bold: True
+                canvas.before:
+                    Color:
+                        rgba: 10000,10000,10000,1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            TextInput:
+                id: shirt_qty
+                foreground_color: 2, 0.2, 0.5, 1
+                bold: True
+                multiline : False
+            Label:
+                text: "Pant"
+                color: 2, 0.2, 0.5, 1
+                bold: True
+                canvas.before:
+                    Color:
+                        rgba: 10000,10000,10000,1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            TextInput:
+                id: pant_qty
+                foreground_color: 2, 0.2, 0.5, 1
+                bold: True
+                multiline : False
+            Label:
+                text: "Saree"
+                color: 2, 0.2, 0.5, 1
+                bold: True
+                canvas.before:
+                    Color:
+                        rgba: 10000,10000,10000,1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            TextInput:
+                id: saree_qty
+                foreground_color: 2, 0.2, 0.5, 1
+                bold: True
+                multiline : False
+            Label:
+                text: "Others"
+                color: 2, 0.2, 0.5, 1
+                bold: True
+                canvas.before:
+                    Color:
+                        rgba: 10000,10000,10000,1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            TextInput:
+                id: others_qty
+                foreground_color: 2, 0.2, 0.5, 1
+                bold: True
+                multiline : False
+
+        Label:
+            text: ""
+        Button:
+            text: "Done"
+            pos_hint: {"x": 0, "bottom": 1}
+            size_hint: 0.6, 0.2
+            background_color: 2, 0.2, 0.5, 1
+            color: 10000,10000,10000,1
+            on_press:
+                root.submit()
+                app.root.current="start"
+                root.manager.transition.direction = "right"
+
+<FixShirt>:
+    name: "fix_shirt"
+    shirt_qty: shirt_qty
+    GridLayout:
+        cols: 1
+        GridLayout:
+            cols: 1
+            Label:
+                text: "Enter the price of shirt fixed:"
+                pos_hint: {"x": 0, "y":0.2}
+                font_size: 60
+            TextInput:
+                pos_hint: {"x": 0, "y":0}
+                size_hint: 0.1,0.4
+                multiline: False
+                id: shirt_qty
+            Label:
+                text: ""
+            Label:
+                text: ""
+        Button:
+            text: "Done"
+            pos_hint: {"x": 0.4, "bottom":1}
+            size_hint: 0.2,0.2
+            on_press:
+                root.submit()
+                app.root.current="start"
+                root.manager.transition.direction = "right"
+
+<FixPant>:
+    name: "fix_pant"
+    pant_qty: pant_qty
+    GridLayout:
+        cols: 1
+        GridLayout:
+            cols: 1
+            Label:
+                text: "Enter the price of pant fixed:"
+                pos_hint: {"x": 0, "y":0.2}
+                font_size: 60
+            TextInput:
+                pos_hint: {"x": 0, "y":0}
+                size_hint: 0.1,0.4
+                multiline: False
+                id: pant_qty
+            Label:
+                text: ""
+            Label:
+                text: ""
+        Button:
+            text: "Done"
+            pos_hint: {"x": 0.4, "bottom":1}
+            size_hint: 0.2,0.2
+            on_press:
+                root.submit()
+                app.root.current="start"
+                root.manager.transition.direction = "right"
+
+<FixSaree>:
+    name: "fix_saree"
+    saree_qty: saree_qty
+    GridLayout:
+        cols: 1
+        GridLayout:
+            cols: 1
+            Label:
+                text: "Enter the price of saree fixed:"
+                pos_hint: {"x": 0, "y":0.2}
+                font_size: 60
+            TextInput:
+                pos_hint: {"x": 0, "y":0}
+                size_hint: 0.1,0.4
+                multiline: False
+                id: saree_qty
+            Label:
+                text: ""
+            Label:
+                text: ""
+        Button:
+            text: "Done"
+            pos_hint: {"x": 0.4, "bottom":1}
+            size_hint: 0.2,0.2
+            on_press:
+                root.submit()
+                app.root.current="start"
+                root.manager.transition.direction = "right"
+
+<FixOthers>:
+    name: "fix_others"
+    others_qty: others_qty
+    GridLayout:
+        cols: 1
+        GridLayout:
+            cols: 1
+            Label:
+                text: "Enter the price of others fixed:"
+                pos_hint: {"x": 0, "y":0.2}
+                font_size: 60
+            TextInput:
+                pos_hint: {"x": 0, "y":0}
+                size_hint: 0.1,0.4
+                multiline: False
+                id: others_qty
+            Label:
+                text: ""
+            Label:
+                text: ""
+        Button:
+            text: "Done"
+            pos_hint: {"x": 0.4, "bottom":1}
+            size_hint: 0.2,0.2
+            on_press:
+                root.submit()
+                app.root.current="start"
+                root.manager.transition.direction = "right"
+
+<QtyShirt>:
+    name: "qty_shirt"
+    tot_shirt: tot_shirt
+    GridLayout:
+        cols: 1
+        GridLayout:
+            cols: 1
+            Label:
+                text: "Enter the quantity of shirt given:"
+                pos_hint: {"x": 0, "y":0.2}
+                font_size: 60
+            TextInput:
+                pos_hint: {"x": 0, "y":0}
+                size_hint: 0.1,0.4
+                multiline: False
+                id: tot_shirt
+            Label:
+                text: ""
+            Label:
+                text: ""
+        Button:
+            text: "Done"
+            pos_hint: {"x": 0.4, "bottom":1}
+            size_hint: 0.2,0.2
+            on_press:
+                root.submit()
+                app.root.current="addclothes"
+                root.manager.transition.direction = "right"
+
+<QtyPant>:
+    name: "qty_pant"
+    tot_pant: tot_pant
+    GridLayout:
+        cols: 1
+        GridLayout:
+            cols: 1
+            Label:
+                text: "Enter the quantity of pant given:"
+                pos_hint: {"x": 0, "y":0.2}
+                font_size: 60
+            TextInput:
+                pos_hint: {"x": 0, "y":0}
+                size_hint: 0.1,0.4
+                multiline: False
+                id: tot_pant
+            Label:
+                text: ""
+            Label:
+                text: ""
+        Button:
+            text: "Done"
+            pos_hint: {"x": 0.4, "bottom":1}
+            size_hint: 0.2,0.2
+            on_press:
+                root.submit()
+                app.root.current="addclothes"
+                root.manager.transition.direction = "right"
+
+<QtySaree>:
+    name: "qty_saree"
+    tot_saree: tot_saree
+    GridLayout:
+        cols: 1
+        GridLayout:
+            cols: 1
+            Label:
+                text: "Enter the quantity of saree given:"
+                pos_hint: {"x": 0, "y":0.2}
+                font_size: 60
+            TextInput:
+                pos_hint: {"x": 0, "y":0}
+                size_hint: 0.1,0.4
+                multiline: False
+                id: tot_saree
+            Label:
+                text: ""
+            Label:
+                text: ""
+        Button:
+            text: "Done"
+            pos_hint: {"x": 0.4, "bottom":1}
+            size_hint: 0.2,0.2
+            on_press:
+                root.submit()
+                app.root.current="addclothes"
+                root.manager.transition.direction = "right"
+
+
+<QtyOthers>:
+    name: "qty_others"
+    tot_others: tot_others
+    GridLayout:
+        cols: 1
+        GridLayout:
+            cols: 1
+            Label:
+                text: "Enter the quantity of others given:"
+                pos_hint: {"x": 0, "y":0.2}
+                font_size: 60
+            TextInput:
+                pos_hint: {"x": 0, "y":0}
+                size_hint: 0.1,0.4
+                multiline: False
+                id: tot_others
+            Label:
+                text: ""
+            Label:
+                text: ""
+        Button:
+            text: "Done"
+            pos_hint: {"x": 0.4, "bottom":1}
+            size_hint: 0.2,0.2
+            on_press:
+                root.submit()
+                app.root.current="addclothes"
+                root.manager.transition.direction = "right"
