@@ -59,17 +59,50 @@ class FixPrice(Screen, Widget):
     pant_qty = ObjectProperty(None)
     saree_qty = ObjectProperty(None)
     others_qty = ObjectProperty(None)
+    fixed_shirt = ObjectProperty(None)
+    fixed_pant = ObjectProperty(None)
+    fixed_saree = ObjectProperty(None)
+    fixed_others = ObjectProperty(None)
 
     def submit(self):
         if self.shirt_qty.text != "":
             db.add_entry("Shirt", self.shirt_qty.text)
+            self.shirt_qty.text = ""
         if self.pant_qty.text != "":
             db.add_entry("Pant", self.pant_qty.text)
+            self.pant_qty.text = ""
         if self.saree_qty.text != "":
             db.add_entry("Saree", self.saree_qty.text)
+            self.saree_qty.text = ""
         if self.others_qty.text != "":
             db.add_entry("Others", self.others_qty.text)
+            self.others_qty.text = ""
 
+    def on_enter(self, *args):
+        shirt_val = db.get_entry("Shirt")
+        pant_val = db.get_entry("Pant")
+        saree_val = db.get_entry("Saree")
+        others_val = db.get_entry("Others")
+
+        if shirt_val == "" or shirt_val == -1:
+            shirt_val = "Not fixed yet"
+
+        self.fixed_shirt.text = str(shirt_val)
+
+        if pant_val == "" or pant_val == -1:
+            pant_val = "Not fixed yet"
+
+        self.fixed_pant.text = str(pant_val)
+
+        if saree_val == "" or saree_val == -1:
+            saree_val = "Not fixed yet"
+
+        self.fixed_saree.text = str(saree_val)
+
+        if others_val == "" or others_val == -1:
+            others_val = "Not fixed yet"
+
+        self.fixed_others.text = str(others_val)
 
 class AddClothes(Screen):
     tot_shirt = ObjectProperty(None)
@@ -397,113 +430,6 @@ class History(Screen):
             self.typeo5.text = "Type: " + contents[cnt-5].split(";")[2]
             self.price5.text = "Price: " + contents[cnt-5].split(";")[3]
             self.tot5.text = "Total: " + contents[cnt-5].split(";")[4]
-
-
-class FixShirt(Screen):
-    def submit(self):
-        db.add_entry("Shirt", self.shirt_qty.text)
-        self.shirt_qty.text = ""
-
-
-class FixPant(Screen):
-    def submit(self):
-        db.add_entry("Pant", self.pant_qty.text)
-        self.pant_qty.text = ""
-
-
-class FixSaree(Screen):
-    def submit(self):
-        db.add_entry("Saree", self.saree_qty.text)
-        self.saree_qty.text = ""
-
-
-class FixOthers(Screen):
-    def submit(self):
-        db.add_entry("Others", self.others_qty.text)
-        self.others_qty.text = ""
-
-
-class QtyShirt(Screen):
-    def submit(self):
-        price = db.get_entry("Shirt")
-        no_of_shirt = self.tot_shirt.text
-
-        if no_of_shirt == "":
-            no_of_shirt = 0
-
-        amount = int(no_of_shirt)*int(price)
-        db1.add_entry("Shirt", str(int(no_of_shirt)), price)
-        prev_amount = db2.get_entry()
- 
-        if prev_amount is None:
-            prev_amount = 0
-        
-        new_amount = int(prev_amount) + amount
-        db2.add_entry(new_amount)
-        self.tot_shirt.text = ""
-
-
-class QtyPant(Screen):
-    def submit(self):
-        price = db.get_entry("Pant")
-        no_of_pant = self.tot_pant.text
-
-        if no_of_pant == "":
-            no_of_pant = 0
-
-        amount = int(no_of_pant)*int(price)
-        db1.add_entry("Pant", str(int(no_of_pant)), price)
-        prev_amount = db2.get_entry()
-
-        if prev_amount is None:
-            prev_amount = 0
-        
-        new_amount = int(prev_amount) + amount
-        db2.add_entry(new_amount)
-        self.tot_pant.text = ""
-
-
-class QtySaree(Screen):
-    def submit(self):
-        price = db.get_entry("Saree")
-        no_of_saree = self.tot_saree.text
-
-        if no_of_saree == "":
-            no_of_saree = 0
-
-        # if price == "":
-        #     popup
-
-        amount = int(no_of_saree)*int(price)
-        db1.add_entry("Saree", str(int(no_of_saree)), price)
-        prev_amount = db2.get_entry()
-
-        if prev_amount is None:
-            prev_amount = 0
-        
-        new_amount = int(prev_amount) + amount
-        db2.add_entry(new_amount)
-        self.tot_saree.text = ""
-
-
-class QtyOthers(Screen):
-    def submit(self):
-        price = db.get_entry("Others")
-        no_of_others = self.tot_others.text
-
-        if no_of_others == "":
-            no_of_others = 0
-
-        amount = int(no_of_others)*int(price)
-        db1.add_entry("Others", str(int(no_of_others)), price)
-        prev_amount = db2.get_entry()
-
-        if prev_amount is None:
-            prev_amount = 0
-
-        new_amount = int(prev_amount) + amount
-        db2.add_entry(new_amount)
-        self.tot_others.text = ""
 
 
 class WindowManager(ScreenManager):

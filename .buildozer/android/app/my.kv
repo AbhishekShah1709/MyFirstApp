@@ -4,16 +4,13 @@ WindowManager:
     History:
     AddClothes:
     FixPrice:
-    FixShirt:
-    FixPant:
-    FixSaree:
-    FixOthers:
-    QtyShirt:
-    QtyPant:
-    QtySaree:
-    QtyOthers:
     Show:
 
+
+<TextInput@TextInput>:
+    input_type: 'number'
+    input_filter: 'int'
+    multiline: False
 
 <Start>:
     name: "start"
@@ -33,7 +30,7 @@ WindowManager:
         bold: True
         canvas.before:
             Color:
-                rgba: 2, 0.2, 0.5, 1
+                rgba: 0.74, 0.2, 0.3, 1
             Rectangle:
                 pos: self.pos
                 size: self.size
@@ -110,13 +107,15 @@ WindowManager:
     name: "show"
     amountt: amountt
 
-    GridLayout:
+    FloatLayout:
         cols: 1
         Label:
             id: amountt
             text: ""
             font_size: 60
-            color: 2, 0.2, 0.5, 1
+            color: 0.74, 0.2, 0.3, 1
+            pos_hint: {"x": 0, "y": 0.1}
+            size_hint: 1, 1
             bold: True
             canvas.before:
                 Color:
@@ -128,7 +127,7 @@ WindowManager:
         Button:
             text: "Back"
             pos_hint: {"x": 0, "bottom": 1}
-            size_hint: 0.6, 0.1
+            size_hint: 1, 0.1
             background_color: 2, 0.2, 0.5, 1
             color: 10000,10000,10000,1
             on_press:
@@ -146,14 +145,16 @@ WindowManager:
             pos: self.pos
             size: self.size
 
-    GridLayout:
+    FloatLayout:
         cols: 1
-        GridLayout:
+        FloatLayout:
             cols: 1
             Label:
                 text: "Please input the amount paid"
                 font_size: 60
-                color: 2, 0.2, 0.5, 1
+                pos_hint: {"x": 0, "top":0.9}
+                size_hint: 1,0.1
+                color: 0.74, 0.2, 0.3, 1
                 bold: True
                 canvas.before:
                     Color:
@@ -162,20 +163,20 @@ WindowManager:
                         pos: self.pos
                         size: self.size
             TextInput:
-                pos_hint: {"x": 0, "y":0}
-                size_hint: 0.1,0.4
+                input_type: 'number'
+                input_filter: 'int'
+                pos_hint: {"x": 0, "y":0.65}
+                size_hint: 1,0.1
                 multiline: False
                 bold: True
-                foreground_color: 2, 0.2, 0.5, 1
+                foreground_color: 0.74, 0.2, 0.3, 1
                 id: money
-            Label:
-                text: ""
-            Label:
-                text: ""
+                padding: [self.width/3,(self.height-self.line_height)/2]
+
         Button:
             text: "Done"
-            pos_hint: {"x": 0.4, "bottom":1}
-            size_hint: 0.2,0.2
+            pos_hint: {"x": 0, "bottom":1}
+            size_hint: 1,0.1
             background_color: 2, 0.2, 0.5, 1
             color: 10000,10000,10000,1
             on_press:
@@ -195,7 +196,7 @@ WindowManager:
         text: "Please fix price of the shirt first"
         size_hint: 0.6, 0.2
         pos_hint: {"x":0.2, "top":0.6}
-        color: 2, 0.2, 0.5, 1
+        color: 0.74, 0.2, 0.3, 1
         bold: True
         canvas.before:
             Color:
@@ -216,7 +217,7 @@ WindowManager:
         text: "Please fix price of the pant first"
         size_hint: 0.6, 0.2
         pos_hint: {"x":0.2, "top":0.6}
-        color: 2, 0.2, 0.5, 1
+        color: 0.74, 0.2, 0.3, 1
         bold: True
         canvas.before:
             Color:
@@ -237,7 +238,7 @@ WindowManager:
         text: "Please fix price of the saree first"
         size_hint: 0.6, 0.2
         pos_hint: {"x":0.2, "top":0.6}
-        color: 2, 0.2, 0.5, 1
+        color: 0.74, 0.2, 0.3, 1
         bold: True
         canvas.before:
             Color:
@@ -258,7 +259,7 @@ WindowManager:
         text: "Please fix price of the others first"
         size_hint: 0.6, 0.2
         pos_hint: {"x":0.2, "top":0.6}
-        color: 2, 0.2, 0.5, 1
+        color: 0.74, 0.2, 0.3, 1
         bold: True
         canvas.before:
             Color:
@@ -280,13 +281,16 @@ WindowManager:
             pos: self.pos
             size: self.size
 
-    GridLayout:
+    FloatLayout:
         cols:1
-        GridLayout:
+        FloatLayout:
             cols:2
             Label:
                 text: "Shirt"
-                color: 2, 0.2, 0.5, 1
+                color: 0.74, 0.2, 0.3, 1
+                font_size: 45
+                pos_hint: {"x": 0, "top": 1}
+                size_hint: 0.5, 0.1
                 bold: True
                 canvas.before:
                     Color:
@@ -295,13 +299,23 @@ WindowManager:
                         pos: self.pos
                         size: self.size
             TextInput:
+                input_type: 'number'
+                input_filter: 'int'
                 id: tot_shirt
-                foreground_color: 2, 0.2, 0.5, 1
+                foreground_color: 0.74, 0.2, 0.3, 1
+                font_size: 45
+                pos_hint: {"x": 0.5, "top": 1}
+                size_hint: 0.5, 0.1
                 bold: True
                 multiline: False
+                padding: [self.width/6,(self.height-self.line_height)/2]
+
             Label:
                 text: "Pant"
-                color: 2, 0.2, 0.5, 1
+                color: 0.74, 0.2, 0.3, 1
+                font_size: 45
+                pos_hint: {"x": 0, "top": 0.9}
+                size_hint: 0.5, 0.1
                 bold: True
                 canvas.before:
                     Color:
@@ -310,13 +324,23 @@ WindowManager:
                         pos: self.pos
                         size: self.size
             TextInput:
+                input_type: 'number'
+                input_filter: 'int'
                 id: tot_pant
-                foreground_color: 2, 0.2, 0.5, 1
+                foreground_color: 0.74, 0.2, 0.3, 1
+                font_size: 45
+                pos_hint: {"x": 0.5, "top": 0.9}
+                size_hint: 0.5, 0.1
                 bold: True
                 multiline: False
+                padding: [self.width/6,(self.height-self.line_height)/2]
+
             Label:
                 text: "Saree"
-                color: 2, 0.2, 0.5, 1
+                color: 0.74, 0.2, 0.3, 1
+                font_size: 45
+                pos_hint: {"x": 0, "top": 0.8}
+                size_hint: 0.5, 0.1
                 bold: True
                 canvas.before:
                     Color:
@@ -325,13 +349,23 @@ WindowManager:
                         pos: self.pos
                         size: self.size
             TextInput:
+                input_type: 'number'
+                input_filter: 'int'
                 id: tot_saree
-                foreground_color: 2, 0.2, 0.5, 1
+                foreground_color: 0.74, 0.2, 0.3, 1
+                font_size: 45
+                pos_hint: {"x": 0.5, "top": 0.8}
+                size_hint: 0.5, 0.1
                 bold: True
                 multiline: False
+                padding: [self.width/6,(self.height-self.line_height)/2]
+
             Label:
                 text: "Others"
-                color: 2, 0.2, 0.5, 1
+                color: 0.74, 0.2, 0.3, 1
+                font_size: 45
+                pos_hint: {"x": 0, "top": 0.7}
+                size_hint: 0.5, 0.1
                 bold: True
                 canvas.before:
                     Color:
@@ -340,17 +374,21 @@ WindowManager:
                         pos: self.pos
                         size: self.size
             TextInput:
+                input_type: 'number'
+                input_filter: 'int'
                 id: tot_others
-                foreground_color: 2, 0.2, 0.5, 1
+                foreground_color: 0.74, 0.2, 0.3, 1
+                font_size: 45
+                pos_hint: {"x": 0.5, "top": 0.7}
+                size_hint: 0.5, 0.1
                 bold: True
                 multiline: False
+                padding: [self.width/6,(self.height-self.line_height)/2]
 
-        Label:
-            text: ""
         Button:
             text: "Done"
             pos_hint: {"x": 0, "bottom": 1}
-            size_hint: 0.6, 0.2
+            size_hint: 1, 0.1
             background_color: 2, 0.2, 0.5, 1
             color: 10000,10000,10000,1
             on_press:
@@ -397,15 +435,18 @@ WindowManager:
             size: self.size
 
 
-    GridLayout:
+    FloatLayout:
         cols: 1
-        GridLayout:
+        FloatLayout:
             cols: 3
             Label:
                 id: date
                 text: ""
-                color: 2, 0.2, 0.5, 1
+                color: 0.74, 0.2, 0.3, 1
                 bold: True
+                spacing: [1,1]
+                pos_hint: {"x": 0, "top": 1}
+                size_hint: 0.33, 0.1
                 canvas.before:
                     Color:
                         rgba: 10000,10000,10000,1
@@ -415,8 +456,11 @@ WindowManager:
             Label:
                 id: quantity
                 text: ""
-                color: 2, 0.2, 0.5, 1
+                color: 0.74, 0.2, 0.3, 1
                 bold: True
+                spacing: [1,1]
+                pos_hint: {"x": 0.33, "top": 1}
+                size_hint: 0.33, 0.1
                 canvas.before:
                     Color:
                         rgba: 10000,10000,10000,1
@@ -426,8 +470,11 @@ WindowManager:
             Label:
                 id: typeo
                 text: ""
-                color: 2, 0.2, 0.5, 1
+                color: 0.74, 0.2, 0.3, 1
                 bold: True
+                spacing: 15,15
+                pos_hint: {"x": 0.66, "top": 1}
+                size_hint: 0.33, 0.1
                 canvas.before:
                     Color:
                         rgba: 10000,10000,10000,1
@@ -437,8 +484,10 @@ WindowManager:
             Label:
                 id: price
                 text: ""
-                color: 2, 0.2, 0.5, 1
+                color: 0.74, 0.2, 0.3, 1
                 bold: True
+                pos_hint: {"x": 0, "top": 0.9}
+                size_hint: 0.33, 0.1
                 canvas.before:
                     Color:
                         rgba: 10000,10000,10000,1
@@ -448,8 +497,10 @@ WindowManager:
             Label:
                 id: tot
                 text: ""
-                color: 2, 0.2, 0.5, 1
+                color: 0.74, 0.2, 0.3, 1
                 bold: True
+                pos_hint: {"x": 0.33, "top": 0.9}
+                size_hint: 0.33, 0.1
                 canvas.before:
                     Color:
                         rgba: 10000,10000,10000,1
@@ -458,11 +509,15 @@ WindowManager:
                         size: self.size
             Label:
                 text: ""
+                pos_hint: {"x": 0.66, "top": 0.9}
+                size_hint: 0.33, 0.1
             Label:
                 id: date2
                 text: ""
-                color: 2, 0.2, 0.5, 1
+                color: 0.74, 0.2, 0.3, 1
                 bold: True
+                pos_hint: {"x": 0, "top": 0.8}
+                size_hint: 0.33, 0.1
                 canvas.before:
                     Color:
                         rgba: 10000,10000,10000,1
@@ -472,8 +527,10 @@ WindowManager:
             Label:
                 id: quantity2
                 text: ""
-                color: 2, 0.2, 0.5, 1
+                color: 0.74, 0.2, 0.3, 1
                 bold: True
+                pos_hint: {"x": 0.33, "top": 0.8}
+                size_hint: 0.33, 0.1
                 canvas.before:
                     Color:
                         rgba: 10000,10000,10000,1
@@ -483,8 +540,10 @@ WindowManager:
             Label:
                 id: typeo2
                 text: ""
-                color: 2, 0.2, 0.5, 1
+                color: 0.74, 0.2, 0.3, 1
                 bold: True
+                pos_hint: {"x": 0.66, "top": 0.8}
+                size_hint: 0.33, 0.1
                 canvas.before:
                     Color:
                         rgba: 10000,10000,10000,1
@@ -494,8 +553,10 @@ WindowManager:
             Label:
                 id: price2
                 text: ""
-                color: 2, 0.2, 0.5, 1
+                color: 0.74, 0.2, 0.3, 1
                 bold: True
+                pos_hint: {"x": 0, "top": 0.7}
+                size_hint: 0.33, 0.1
                 canvas.before:
                     Color:
                         rgba: 10000,10000,10000,1
@@ -505,8 +566,10 @@ WindowManager:
             Label:
                 id: tot2
                 text: ""
-                color: 2, 0.2, 0.5, 1
+                color: 0.74, 0.2, 0.3, 1
                 bold: True
+                pos_hint: {"x": 0.33, "top": 0.7}
+                size_hint: 0.33, 0.1
                 canvas.before:
                     Color:
                         rgba: 10000,10000,10000,1
@@ -515,11 +578,15 @@ WindowManager:
                         size: self.size
             Label:
                 text: ""
+                pos_hint: {"x": 0.66, "top": 0.7}
+                size_hint: 0.33, 0.1
             Label:
                 id: date3
                 text: ""
-                color: 2, 0.2, 0.5, 1
+                color: 0.74, 0.2, 0.3, 1
                 bold: True
+                pos_hint: {"x": 0, "top": 0.6}
+                size_hint: 0.33, 0.1
                 canvas.before:
                     Color:
                         rgba: 10000,10000,10000,1
@@ -529,8 +596,10 @@ WindowManager:
             Label:
                 id: quantity3
                 text: ""
-                color: 2, 0.2, 0.5, 1
+                color: 0.74, 0.2, 0.3, 1
                 bold: True
+                pos_hint: {"x": 0.33, "top": 0.6}
+                size_hint: 0.33, 0.1
                 canvas.before:
                     Color:
                         rgba: 10000,10000,10000,1
@@ -540,8 +609,10 @@ WindowManager:
             Label:
                 id: typeo3
                 text: ""
-                color: 2, 0.2, 0.5, 1
+                color: 0.74, 0.2, 0.3, 1
                 bold: True
+                pos_hint: {"x": 0.66, "top": 0.6}
+                size_hint: 0.33, 0.1
                 canvas.before:
                     Color:
                         rgba: 10000,10000,10000,1
@@ -551,8 +622,10 @@ WindowManager:
             Label:
                 id: price3
                 text: ""
-                color: 2, 0.2, 0.5, 1
+                color: 0.74, 0.2, 0.3, 1
                 bold: True
+                pos_hint: {"x": 0, "top": 0.5}
+                size_hint: 0.33, 0.1
                 canvas.before:
                     Color:
                         rgba: 10000,10000,10000,1
@@ -562,8 +635,10 @@ WindowManager:
             Label:
                 id: tot3
                 text: ""
-                color: 2, 0.2, 0.5, 1
+                color: 0.74, 0.2, 0.3, 1
                 bold: True
+                pos_hint: {"x": 0.33, "top": 0.5}
+                size_hint: 0.33, 0.1
                 canvas.before:
                     Color:
                         rgba: 10000,10000,10000,1
@@ -572,11 +647,15 @@ WindowManager:
                         size: self.size
             Label:
                 text: ""
+                pos_hint: {"x": 0.66, "top": 0.5}
+                size_hint: 0.33, 0.1
             Label:
                 id: date4
                 text: ""
-                color: 2, 0.2, 0.5, 1
+                color: 0.74, 0.2, 0.3, 1
                 bold: True
+                pos_hint: {"x": 0, "top": 0.4}
+                size_hint: 0.33, 0.1
                 canvas.before:
                     Color:
                         rgba: 10000,10000,10000,1
@@ -586,8 +665,10 @@ WindowManager:
             Label:
                 id: quantity4
                 text: ""
-                color: 2, 0.2, 0.5, 1
+                color: 0.74, 0.2, 0.3, 1
                 bold: True
+                pos_hint: {"x": 0.33, "top": 0.4}
+                size_hint: 0.33, 0.1
                 canvas.before:
                     Color:
                         rgba: 10000,10000,10000,1
@@ -597,8 +678,10 @@ WindowManager:
             Label:
                 id: typeo4
                 text: ""
-                color: 2, 0.2, 0.5, 1
+                color: 0.74, 0.2, 0.3, 1
                 bold: True
+                pos_hint: {"x": 0.66, "top": 0.4}
+                size_hint: 0.33, 0.1
                 canvas.before:
                     Color:
                         rgba: 10000,10000,10000,1
@@ -608,8 +691,10 @@ WindowManager:
             Label:
                 id: price4
                 text: ""
-                color: 2, 0.2, 0.5, 1
+                color: 0.74, 0.2, 0.3, 1
                 bold: True
+                pos_hint: {"x": 0, "top": 0.3}
+                size_hint: 0.33, 0.1
                 canvas.before:
                     Color:
                         rgba: 10000,10000,10000,1
@@ -619,8 +704,10 @@ WindowManager:
             Label:
                 id: tot4
                 text: ""
-                color: 2, 0.2, 0.5, 1
+                color: 0.74, 0.2, 0.3, 1
                 bold: True
+                pos_hint: {"x": 0.33, "top": 0.3}
+                size_hint: 0.33, 0.1
                 canvas.before:
                     Color:
                         rgba: 10000,10000,10000,1
@@ -629,11 +716,15 @@ WindowManager:
                         size: self.size
             Label:
                 text: ""
+                pos_hint: {"x": 0.66, "top": 0.3}
+                size_hint: 0.33, 0.1
             Label:
                 id: date5
                 text: ""
-                color: 2, 0.2, 0.5, 1
+                color: 0.74, 0.2, 0.3, 1
                 bold: True
+                pos_hint: {"x": 0, "top": 0.2}
+                size_hint: 0.33, 0.1
                 canvas.before:
                     Color:
                         rgba: 10000,10000,10000,1
@@ -643,8 +734,10 @@ WindowManager:
             Label:
                 id: quantity5
                 text: ""
-                color: 2, 0.2, 0.5, 1
+                color: 0.74, 0.2, 0.3, 1
                 bold: True
+                pos_hint: {"x": 0.33, "top": 0.2}
+                size_hint: 0.33, 0.1
                 canvas.before:
                     Color:
                         rgba: 10000,10000,10000,1
@@ -654,8 +747,10 @@ WindowManager:
             Label:
                 id: typeo5
                 text: ""
-                color: 2, 0.2, 0.5, 1
+                color: 0.74, 0.2, 0.3, 1
                 bold: True
+                pos_hint: {"x": 0.66, "top": 0.2}
+                size_hint: 0.33, 0.1
                 canvas.before:
                     Color:
                         rgba: 10000,10000,10000,1
@@ -665,8 +760,10 @@ WindowManager:
             Label:
                 id: price5
                 text: ""
-                color: 2, 0.2, 0.5, 1
+                color: 0.74, 0.2, 0.3, 1
                 bold: True
+                pos_hint: {"x": 0, "top": 0.1}
+                size_hint: 0.33, 0.1
                 canvas.before:
                     Color:
                         rgba: 10000,10000,10000,1
@@ -676,8 +773,10 @@ WindowManager:
             Label:
                 id: tot5
                 text: ""
-                color: 2, 0.2, 0.5, 1
+                color: 0.74, 0.2, 0.3, 1
                 bold: True
+                pos_hint: {"x": 0.33, "top": 0.1}
+                size_hint: 0.33, 0.1
                 canvas.before:
                     Color:
                         rgba: 10000,10000,10000,1
@@ -686,10 +785,12 @@ WindowManager:
                         size: self.size
             Label:
                 text: ""
+                pos_hint: {"x": 0.66, "top": 0.1}
+                size_hint: 0.33, 0.1
         Button:
             text: "Back"
             pos_hint: {"x": 0, "bottom": 1}
-            size_hint: 0.6, 0.2
+            size_hint: 1, 0.1
             background_color: 2, 0.2, 0.5, 1
             color: 10000,10000,10000,1
             on_press:
@@ -702,6 +803,11 @@ WindowManager:
     pant_qty : pant_qty
     saree_qty : saree_qty
     others_qty : others_qty
+    fixed_shirt: fixed_shirt
+    fixed_pant: fixed_pant
+    fixed_saree: fixed_saree
+    fixed_others: fixed_others
+
     canvas:
         Color:
             rgb: [10000, 10000, 10000]
@@ -709,13 +815,55 @@ WindowManager:
             pos: self.pos
             size: self.size
 
-    GridLayout:
+    FloatLayout:
         cols:1
-        GridLayout:
-            cols:2
+        FloatLayout:
+            cols:3
+            Label:
+                text: "Type"
+                color: 0.74, 0.2, 0.3, 1
+                bold: True
+                font_size: 55
+                pos_hint: {"x": 0, "top": 1}
+                size_hint: 0.33, 0.1
+                canvas.before:
+                    Color:
+                        rgba: 10000,10000,10000,1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            Label:
+                text: "New Value"
+                color: 0.74, 0.2, 0.3, 1
+                bold: True
+                font_size: 55
+                pos_hint: {"x": 0.33, "top": 1}
+                size_hint: 0.33, 0.1
+                canvas.before:
+                    Color:
+                        rgba: 10000,10000,10000,1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            Label:
+                text: "Current Value"
+                color: 0.74, 0.2, 0.3, 1
+                bold: True
+                font_size: 55
+                pos_hint: {"x": 0.66, "top": 1}
+                size_hint: 0.33, 0.1
+                canvas.before:
+                    Color:
+                        rgba: 10000,10000,10000,1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
             Label:
                 text: "Shirt"
-                color: 2, 0.2, 0.5, 1
+                color: 0.74, 0.2, 0.3, 1
+                font_size: 45
+                pos_hint: {"x": 0, "top": 0.8}
+                size_hint: 0.33, 0.1
                 bold: True
                 canvas.before:
                     Color:
@@ -724,13 +872,37 @@ WindowManager:
                         pos: self.pos
                         size: self.size
             TextInput:
+                input_type: 'number'
+                input_filter: 'int'
                 id: shirt_qty
-                foreground_color: 2, 0.2, 0.5, 1
+                foreground_color: 0.74, 0.2, 0.3, 1
+                font_size: 45
+                pos_hint: {"x": 0.33, "top": 0.8}
+                size_hint: 0.33, 0.1
                 bold: True
                 multiline : False
+                padding: [self.width/6,(self.height-self.line_height)/2]
+
+            Label:
+                id: fixed_shirt
+                text: ""
+                color: 0.74, 0.2, 0.3, 1
+                font_size: 45
+                pos_hint: {"x": 0.66, "top": 0.8}
+                size_hint: 0.33, 0.1
+                bold: True
+                canvas.before:
+                    Color:
+                        rgba: 10000,10000,10000,1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
             Label:
                 text: "Pant"
-                color: 2, 0.2, 0.5, 1
+                color: 0.74, 0.2, 0.3, 1
+                font_size: 45
+                pos_hint: {"x": 0, "top": 0.7}
+                size_hint: 0.33, 0.1
                 bold: True
                 canvas.before:
                     Color:
@@ -739,13 +911,37 @@ WindowManager:
                         pos: self.pos
                         size: self.size
             TextInput:
+                input_type: 'number'
+                input_filter: 'int'
                 id: pant_qty
-                foreground_color: 2, 0.2, 0.5, 1
+                foreground_color: 0.74, 0.2, 0.3, 1
+                font_size: 45
+                pos_hint: {"x": 0.33, "top": 0.7}
+                size_hint: 0.33, 0.1
                 bold: True
                 multiline : False
+                padding: [self.width/6,(self.height-self.line_height)/2]
+
+            Label:
+                id: fixed_pant
+                text: ""
+                color: 0.74, 0.2, 0.3, 1
+                font_size: 45
+                pos_hint: {"x": 0.66, "top": 0.7}
+                size_hint: 0.33, 0.1
+                bold: True
+                canvas.before:
+                    Color:
+                        rgba: 10000,10000,10000,1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
             Label:
                 text: "Saree"
-                color: 2, 0.2, 0.5, 1
+                color: 0.74, 0.2, 0.3, 1
+                font_size: 45
+                pos_hint: {"x": 0, "top": 0.6}
+                size_hint: 0.33, 0.1
                 bold: True
                 canvas.before:
                     Color:
@@ -754,13 +950,37 @@ WindowManager:
                         pos: self.pos
                         size: self.size
             TextInput:
+                input_type: 'number'
+                input_filter: 'int'
                 id: saree_qty
-                foreground_color: 2, 0.2, 0.5, 1
+                foreground_color: 0.74, 0.2, 0.3, 1
+                font_size: 45
+                pos_hint: {"x": 0.33, "top": 0.6}
+                size_hint: 0.33, 0.1
                 bold: True
                 multiline : False
+                padding: [self.width/6,(self.height-self.line_height)/2]
+
+            Label:
+                id: fixed_saree
+                text: ""
+                color: 0.74, 0.2, 0.3, 1
+                font_size: 45
+                pos_hint: {"x": 0.66, "top": 0.6}
+                size_hint: 0.33, 0.1
+                bold: True
+                canvas.before:
+                    Color:
+                        rgba: 10000,10000,10000,1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
             Label:
                 text: "Others"
-                color: 2, 0.2, 0.5, 1
+                color: 0.74, 0.2, 0.3, 1
+                font_size: 45
+                pos_hint: {"x": 0, "top": 0.5}
+                size_hint: 0.33, 0.1
                 bold: True
                 canvas.before:
                     Color:
@@ -769,253 +989,39 @@ WindowManager:
                         pos: self.pos
                         size: self.size
             TextInput:
+                input_type: 'number'
+                input_filter: 'int'
                 id: others_qty
-                foreground_color: 2, 0.2, 0.5, 1
+                foreground_color: 0.74, 0.2, 0.3, 1
+                font_size: 45
+                pos_hint: {"x": 0.33, "top": 0.5}
+                size_hint: 0.33, 0.1
                 bold: True
                 multiline : False
+                padding: [self.width/6,(self.height-self.line_height)/2]
 
-        Label:
-            text: ""
+            Label:
+                id: fixed_others
+                text: ""
+                color: 0.74, 0.2, 0.3, 1
+                font_size: 45
+                pos_hint: {"x": 0.66, "top": 0.5}
+                size_hint: 0.33, 0.1
+                bold: True
+                canvas.before:
+                    Color:
+                        rgba: 10000,10000,10000,1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+
         Button:
             text: "Done"
             pos_hint: {"x": 0, "bottom": 1}
-            size_hint: 0.6, 0.2
+            size_hint: 1, 0.1
             background_color: 2, 0.2, 0.5, 1
             color: 10000,10000,10000,1
             on_press:
                 root.submit()
                 app.root.current="start"
-                root.manager.transition.direction = "right"
-
-<FixShirt>:
-    name: "fix_shirt"
-    shirt_qty: shirt_qty
-    GridLayout:
-        cols: 1
-        GridLayout:
-            cols: 1
-            Label:
-                text: "Enter the price of shirt fixed:"
-                pos_hint: {"x": 0, "y":0.2}
-                font_size: 60
-            TextInput:
-                pos_hint: {"x": 0, "y":0}
-                size_hint: 0.1,0.4
-                multiline: False
-                id: shirt_qty
-            Label:
-                text: ""
-            Label:
-                text: ""
-        Button:
-            text: "Done"
-            pos_hint: {"x": 0.4, "bottom":1}
-            size_hint: 0.2,0.2
-            on_press:
-                root.submit()
-                app.root.current="start"
-                root.manager.transition.direction = "right"
-
-<FixPant>:
-    name: "fix_pant"
-    pant_qty: pant_qty
-    GridLayout:
-        cols: 1
-        GridLayout:
-            cols: 1
-            Label:
-                text: "Enter the price of pant fixed:"
-                pos_hint: {"x": 0, "y":0.2}
-                font_size: 60
-            TextInput:
-                pos_hint: {"x": 0, "y":0}
-                size_hint: 0.1,0.4
-                multiline: False
-                id: pant_qty
-            Label:
-                text: ""
-            Label:
-                text: ""
-        Button:
-            text: "Done"
-            pos_hint: {"x": 0.4, "bottom":1}
-            size_hint: 0.2,0.2
-            on_press:
-                root.submit()
-                app.root.current="start"
-                root.manager.transition.direction = "right"
-
-<FixSaree>:
-    name: "fix_saree"
-    saree_qty: saree_qty
-    GridLayout:
-        cols: 1
-        GridLayout:
-            cols: 1
-            Label:
-                text: "Enter the price of saree fixed:"
-                pos_hint: {"x": 0, "y":0.2}
-                font_size: 60
-            TextInput:
-                pos_hint: {"x": 0, "y":0}
-                size_hint: 0.1,0.4
-                multiline: False
-                id: saree_qty
-            Label:
-                text: ""
-            Label:
-                text: ""
-        Button:
-            text: "Done"
-            pos_hint: {"x": 0.4, "bottom":1}
-            size_hint: 0.2,0.2
-            on_press:
-                root.submit()
-                app.root.current="start"
-                root.manager.transition.direction = "right"
-
-<FixOthers>:
-    name: "fix_others"
-    others_qty: others_qty
-    GridLayout:
-        cols: 1
-        GridLayout:
-            cols: 1
-            Label:
-                text: "Enter the price of others fixed:"
-                pos_hint: {"x": 0, "y":0.2}
-                font_size: 60
-            TextInput:
-                pos_hint: {"x": 0, "y":0}
-                size_hint: 0.1,0.4
-                multiline: False
-                id: others_qty
-            Label:
-                text: ""
-            Label:
-                text: ""
-        Button:
-            text: "Done"
-            pos_hint: {"x": 0.4, "bottom":1}
-            size_hint: 0.2,0.2
-            on_press:
-                root.submit()
-                app.root.current="start"
-                root.manager.transition.direction = "right"
-
-<QtyShirt>:
-    name: "qty_shirt"
-    tot_shirt: tot_shirt
-    GridLayout:
-        cols: 1
-        GridLayout:
-            cols: 1
-            Label:
-                text: "Enter the quantity of shirt given:"
-                pos_hint: {"x": 0, "y":0.2}
-                font_size: 60
-            TextInput:
-                pos_hint: {"x": 0, "y":0}
-                size_hint: 0.1,0.4
-                multiline: False
-                id: tot_shirt
-            Label:
-                text: ""
-            Label:
-                text: ""
-        Button:
-            text: "Done"
-            pos_hint: {"x": 0.4, "bottom":1}
-            size_hint: 0.2,0.2
-            on_press:
-                root.submit()
-                app.root.current="addclothes"
-                root.manager.transition.direction = "right"
-
-<QtyPant>:
-    name: "qty_pant"
-    tot_pant: tot_pant
-    GridLayout:
-        cols: 1
-        GridLayout:
-            cols: 1
-            Label:
-                text: "Enter the quantity of pant given:"
-                pos_hint: {"x": 0, "y":0.2}
-                font_size: 60
-            TextInput:
-                pos_hint: {"x": 0, "y":0}
-                size_hint: 0.1,0.4
-                multiline: False
-                id: tot_pant
-            Label:
-                text: ""
-            Label:
-                text: ""
-        Button:
-            text: "Done"
-            pos_hint: {"x": 0.4, "bottom":1}
-            size_hint: 0.2,0.2
-            on_press:
-                root.submit()
-                app.root.current="addclothes"
-                root.manager.transition.direction = "right"
-
-<QtySaree>:
-    name: "qty_saree"
-    tot_saree: tot_saree
-    GridLayout:
-        cols: 1
-        GridLayout:
-            cols: 1
-            Label:
-                text: "Enter the quantity of saree given:"
-                pos_hint: {"x": 0, "y":0.2}
-                font_size: 60
-            TextInput:
-                pos_hint: {"x": 0, "y":0}
-                size_hint: 0.1,0.4
-                multiline: False
-                id: tot_saree
-            Label:
-                text: ""
-            Label:
-                text: ""
-        Button:
-            text: "Done"
-            pos_hint: {"x": 0.4, "bottom":1}
-            size_hint: 0.2,0.2
-            on_press:
-                root.submit()
-                app.root.current="addclothes"
-                root.manager.transition.direction = "right"
-
-
-<QtyOthers>:
-    name: "qty_others"
-    tot_others: tot_others
-    GridLayout:
-        cols: 1
-        GridLayout:
-            cols: 1
-            Label:
-                text: "Enter the quantity of others given:"
-                pos_hint: {"x": 0, "y":0.2}
-                font_size: 60
-            TextInput:
-                pos_hint: {"x": 0, "y":0}
-                size_hint: 0.1,0.4
-                multiline: False
-                id: tot_others
-            Label:
-                text: ""
-            Label:
-                text: ""
-        Button:
-            text: "Done"
-            pos_hint: {"x": 0.4, "bottom":1}
-            size_hint: 0.2,0.2
-            on_press:
-                root.submit()
-                app.root.current="addclothes"
                 root.manager.transition.direction = "right"

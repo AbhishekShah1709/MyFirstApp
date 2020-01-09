@@ -11,6 +11,8 @@ from database import Database
 from database1 import Database1
 from database2 import Database2
 from kivy.uix.popup import Popup
+from kivy.base import EventLoop
+
 from kivy.graphics import Color
 
 
@@ -59,16 +61,59 @@ class FixPrice(Screen, Widget):
     pant_qty = ObjectProperty(None)
     saree_qty = ObjectProperty(None)
     others_qty = ObjectProperty(None)
+    fixed_shirt = ObjectProperty(None)
+    fixed_pant = ObjectProperty(None)
+    fixed_saree = ObjectProperty(None)
+    fixed_others = ObjectProperty(None)
 
     def submit(self):
         if self.shirt_qty.text != "":
             db.add_entry("Shirt", self.shirt_qty.text)
+            self.shirt_qty.text = ""
         if self.pant_qty.text != "":
             db.add_entry("Pant", self.pant_qty.text)
+            self.pant_qty.text = ""
         if self.saree_qty.text != "":
             db.add_entry("Saree", self.saree_qty.text)
+            self.saree_qty.text = ""
         if self.others_qty.text != "":
             db.add_entry("Others", self.others_qty.text)
+            self.others_qty.text = ""
+
+    def hook_keyboard(self, window, key, *largs):
+        if key == 27:
+            print("entered")
+            print(sm.current)
+            print(sm.current_screen)
+            sm.get_parent_window()
+            return True
+
+    def on_enter(self, *args):
+        EventLoop.window.bind(on_keyboard=self.hook_keyboard)
+        shirt_val = db.get_entry("Shirt")
+        pant_val = db.get_entry("Pant")
+        saree_val = db.get_entry("Saree")
+        others_val = db.get_entry("Others")
+
+        if shirt_val == "" or shirt_val == -1:
+            shirt_val = "Not fixed yet"
+
+        self.fixed_shirt.text = str(shirt_val)
+
+        if pant_val == "" or pant_val == -1:
+            pant_val = "Not fixed yet"
+
+        self.fixed_pant.text = str(pant_val)
+
+        if saree_val == "" or saree_val == -1:
+            saree_val = "Not fixed yet"
+
+        self.fixed_saree.text = str(saree_val)
+
+        if others_val == "" or others_val == -1:
+            others_val = "Not fixed yet"
+
+        self.fixed_others.text = str(others_val)
 
 
 class AddClothes(Screen):
@@ -408,11 +453,13 @@ db1 = Database1("calc.txt")
 db2 = Database2("price.txt")
 sm = WindowManager()
 
+screens = [Start(name="start"), FixPrice(name="price")]
 
-screens = [Start(name="start")]
 for screen in screens:
     sm.add_widget(screen)
+
 sm.current = "start"
+
 
 class MyApp(App):
     def build(self):

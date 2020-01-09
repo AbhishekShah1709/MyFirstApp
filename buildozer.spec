@@ -46,10 +46,10 @@ requirements = python3,kivy
 #garden_requirements =
 
 # (str) Presplash of the application
-#presplash.filename = %(source.dir)s/data/presplash.png
+presplash.filename = %(source.dir)s/data/loading1.png
 
 # (str) Icon of the application
-#icon.filename = %(source.dir)s/data/icon.png
+icon.filename = %(source.dir)s/data/final_image.png
 
 # (str) Supported orientation (one of landscape, sensorLandscape, portrait or all)
 orientation = portrait
@@ -83,7 +83,7 @@ fullscreen = 0
 # darkgray, grey, lightgrey, darkgrey, aqua, fuchsia, lime, maroon, navy,
 # olive, purple, silver, teal.
 #android.presplash_color = #FFFFFF
-
+android.icon_color = #000000
 # (list) Permissions
 android.permissions = INTERNET
 
